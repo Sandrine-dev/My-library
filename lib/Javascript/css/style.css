@@ -1,0 +1,107 @@
+body,
+html {
+  height: 100%;
+  margin: 0;
+  box-sizing: border-box;
+  scroll-behavior: smooth;
+  font-family: "Gill Sans", "Gill Sans MT", "Calibri", "Trebuchet MS",
+    sans-serif;
+}
+
+#Head {
+  background-color: black;
+  display: flex;
+  flex-direction: column;
+}
+
+#Head h1 {
+  color: yellow;
+  padding-left: 25px;
+  padding-top: 15px;
+}
+
+#Navigation {
+  background-color: black;
+}
+
+.topnav {
+  background-color: black;
+  overflow: hidden;
+}
+.topnav a {
+  float: left;
+  display: block;
+  color: white;
+  text-align: center;
+  padding: 14px;
+  text-decoration: none;
+  font-size: 20px;
+}
+.topnav a:hover {
+  background-color: yellow;
+  color: black;
+  font-weight: bold;
+}
+.topnav .icon {
+  display: none;
+}
+
+#body{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 85%;
+  margin: 15px auto;
+}
+
+#title{
+  font-size: 30px;
+  width: 75%;
+  text-align: center;
+}
+
+#title span, .explain span{
+  font-weight: bold;
+  background: linear-gradient(to top, yellow 50%, transparent 50%);
+}
+
+section{
+  width: 70%;
+  border: 1px solid gray;
+  border-radius: 25px;
+  box-shadow: 5px 10px 18px #888888;
+  padding: 15px 35px;
+  font-size: 20px;
+  margin: 15px auto;
+}
+
+.explain{
+  padding: 15px 0px;
+}
+
+
+.explain code span {
+ background: inherit;
+}
+
+#div2, #div3{
+  display: none;
+}
+
+.underNav button{
+  margin: 10px 5px;
+  border: none;
+  border-radius: 15px ;
+  padding: 10px 10px;
+  background-color: black;
+  color: white;
+  font-size: 20px;
+  cursor: pointer;
+}
+
+.underNav button:hover{
+  font-weight: bold;
+  color: yellow;
+  background-color: black;
+}

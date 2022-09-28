@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="fr">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0">
+
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.6.0"></script>
+  
+    <title>Portfolio Sandrine volpi</title>
+
+    <script src="https://unpkg.com/vue/dist/vue.js"></script>
+    <script src="https://unpkg.com/vue-router/dist/vue-router.js"></script>
+
+  </head>
+  <body>
+      
+    <div id="app">
+      <h1>Bonjour l'application !</h1>
+      <p>
+        <!-- utilisez le composant router-link pour la navigation. -->
+        <!-- spécifiez le lien en le passant à la prop `to` -->
+        <!-- `<router-link>` sera rendu en tag `<a>` par défaut -->
+        <router-link to="/home">Aller à Foo</router-link>
+        <router-link to="/contact">Aller à Bar</router-link>
+      </p>
+      <!-- balise pour le composant router-view -->
+      <!-- le composant correspondant à la route sera rendu ici -->
+      <router-view></router-view>
+    </div>
+
+    <script src="javascript/home.js"></script>
+    <script src="javascript/contact.js"></script>
+    <script src="javascript/about.js"></script>
+  </body>
+</html>

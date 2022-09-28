@@ -1,0 +1,340 @@
+/*=== IMPORT ===*/
+
+@import url('https://fonts.googleapis.com/css2?family=Fira+Sans:wght@400;500;600&display=swap');
+
+
+/*=== VARIABLE CSS ===*/
+
+:root{
+    --header-height: 3rem;
+
+    /*=== colors ===*/
+    --hsl-button: 175;
+    --hsl-text: 209;
+    --hsl-deco: 33;
+
+    /*blue light*/
+
+    --first-b-color: hsl(var(--hsl-button), 27%, 65%);
+    --hover-b-color: hsl(var(--hsl-button), 27%, 29%);
+
+    --title-color: hsl(var(--hsl-text), 27%, 24%);
+    --title-color-light: hsl(var(--hsl-text), 25%, 80%);
+    --text-color: hsl(var(--hsl-text), 97%, 9%);
+
+    --deco-color: hsl(var(--hsl-deco), 70%, 65%);
+
+    --body-color: #e8eceb;
+
+    --scroll-bar-color: hsl(var(--hsl-deco), 53%, 75%);
+    --scroll-thumb-color: hsl(var(--hsl-deco), 87%, 58%);
+
+    /*font*/
+    --body-font:'Fira Sans', sans-serif;
+
+    /*.25rem= 4px, .5rem = 8px, 1rem = 16px, 1.5 rem = 24px ...*/
+    --big-font-size: 2.5rem;
+    --h1-font-size: 2rem;
+    --h2-font-size: 1.75rem;
+    --h3-font-size: 1.5rem;
+    --normal-font-size: 1.25rem;
+    --small-font-size: .813rem;
+    --smaller-font-size: .75rem;
+
+    --font-medium: 500;
+    --font-semi-bold: 600;
+
+    /*=== Marge bottomes ===*/
+    --mb-0-25: .25rem;
+    --mb-0-5: .5rem;
+    --mb-0-75: .75rem;
+    --mb-1: 1rem;
+    --mb-1-5: 1.5rem;
+    --mb-2: 2rem;
+    --mb-2-5: 2.5rem;
+    --mb-3: 3rem;
+
+    /*Z-index*/
+
+    --z-tooltip: 10;
+    --z-fixed: 100;
+    --z-modal: 1000;
+
+      /* Change this to change the appearance of the hexaons */
+  --hex-width: 100px; 
+  --hex-between: 10px;
+  
+  /* Other hexagon dimentions */
+  --hex-height: calc(var(--hex-width) / 1.73 /* sqrt(3) */);
+  --hex-margin: calc(var(--hex-width) / 2);
+  --hex-border: calc(var(--hex-margin) / 1.73 /* sqrt(3) */);
+  --hex-transition: all .2s ease;
+}
+
+
+
+
+/* font size for large devices */
+@media screen and (min-width: 968px) {
+    :root{
+        --big-font-size: 3rem;
+        --h1-font-size: 2.25rem;
+        --h2-font-size: 1.5rem;
+        --h3-font-size: 1.25rem;
+        --normal-font-size: 1rem;
+        --small-font-size: .875rem;
+        --smaller-font-size: .813rem;
+    }
+}
+
+/*=== variable dark theme ===*/
+/*body.dark-theme{
+    --first-color-second: hsl(var(--hue-color), 30%, 8%);
+    --title-color: hsl(var(--hue-color), 8%, 95%);
+    --text-color: hsl(var(--hue-color), 8%, 75%);
+    --input-color: hsl(var(--hue-color), 29%, 16%);
+    --body-color: hsl(var(--hue-color), 28%, 12%);
+    --container-color: hsl(var(--hue-color), 29%, 16%);
+
+    --scroll-bar-color: hsl(var(--hue-color), 12%, 48%);
+    --scroll-thumb-color: hsl(var(--hue-color), 12%, 36%);
+}*/
+
+/*=== BASE ===*/
+
+*{
+    box-sizing: border-box;
+    padding: 0;
+    margin: 0;
+}
+
+html{
+    scroll-behavior: smooth;
+}
+
+body{
+    margin: 0 0 (var(--header-height) 0);
+    font-family: var(--body-font);
+    font-size: var(--normal-font-size);
+    background-color: var(--body-color);
+    color: var(--text-color);
+}
+
+h1, h2, h3, h4{
+    color: var(--title-color);
+    font-weight: var(--font-semi-bold);
+}
+
+a{
+    text-decoration: none;
+}
+
+ul{
+    list-style: none;
+}
+
+/*=== HEADER ===*/
+
+h1 {
+  position: relative;
+}
+
+h1::before {
+  content: "";
+  position: absolute;
+  left: 7%;
+  bottom: 7px;
+  width: 125px;
+  height: 12px;
+  transform: skew(-12deg) translateX(-25%);
+  background: var(--deco-color);
+  z-index: -1;
+}
+
+.container{
+    margin: var(--mb-0-75);
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.header_icon{
+    font-size: 2rem;
+    color: var(--text-color);
+    cursor: pointer;
+}
+
+.header_icon:hover{
+    color: var(--deco-color);
+}
+
+
+
+
+/*=== MAIN ===*/
+
+.hex p {
+  width: 100%;
+  font-size: var(--h2-font-size);
+  box-sizing:border-box;
+  font-weight: var(--font-semi-bold);
+  top: 50%;
+  text-align: center;
+  text-transform: uppercase;
+}
+
+
+#hexGrid {
+  display: flex;
+  flex-wrap: wrap;
+  width: 90%;
+  margin: 5rem auto;
+  overflow: hidden;
+}
+
+.hex {
+  position: relative;
+  visibility:hidden;
+  transition: all 0.5s;
+
+}
+.hex::after{
+  content:'';
+  display:block;
+  padding-bottom: 86.602%;  
+}
+.hexIn{
+  position: absolute;
+  width:96%;
+  padding-bottom: 110.851%; /* =  width / sin(60) */
+  margin: 2%;
+  overflow: hidden;
+  visibility: hidden;
+  background-color: black;
+
+  -webkit-transform: rotate3d(0,0,1,-60deg) skewY(30deg);
+      -ms-transform: rotate3d(0,0,1,-60deg) skewY(30deg);
+          transform: rotate3d(0,0,1,-60deg) skewY(30deg);
+    transition: all 0.5s;
+}
+
+.hexIn * {
+  position: absolute;
+  visibility: visible;
+}
+
+
+.hexLink {
+    display:block;
+    width: 100%;
+    height: 100%;
+    text-align: center;
+    color: #fff;
+    overflow: hidden;
+    -webkit-transform: skewY(-30deg) rotate3d(0,0,1,60deg);
+        -ms-transform: skewY(-30deg) rotate3d(0,0,1,60deg);
+            transform: skewY(-30deg) rotate3d(0,0,1,60deg);
+}
+
+
+/** HEX CONTENT **/
+
+.hex_bg {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  background-position: center center;
+  background-size: cover;
+  background-color: var(--first-b-color);
+  overflow: hidden;
+  -webkit-clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%);
+  clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%);
+}
+
+.hex_bg:before, .hex_bg:after {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  content: '';
+  opacity: 0;
+  transition: opacity 0.5s;
+}
+.hex_bg:before {
+  background-color: var(--first-b-color);
+  opacity: 0.3;
+}
+
+
+/*=== HOVER EFFECT  ===*/
+
+.hexIn:hover .hex_bg:before,
+.hexIn:hover .hex_bg:after,
+.hexIn:hover .hexLink {
+  background: var(--hover-b-color);
+}
+
+
+
+
+/*** HEXAGON SIZING AND EVEN ROW INDENTATION *****************************************************************/
+@media (min-width:1201px) { /* <- 5-4  hexagons per row */
+  #hexGrid{
+    padding-bottom: 15.4%
+  }
+  .hex {
+    width: 20%; /* = 100 / 5 */
+  }
+  .hex:nth-child(9n+6){ /* first hexagon of even rows */
+    margin-left:10%;  /* = width of .hex / 2  to indent even rows */
+  }
+}
+
+@media (max-width: 1200px) and (min-width:901px) { /* <- 4-3  hexagons per row */
+  #hexGrid{
+    padding-bottom: 15.5%;
+    font-size: 13px;
+  }
+  .hex {
+    width: 25%; /* = 100 / 4 */
+  }
+  .hex:nth-child(7n+5){ /* first hexagon of even rows */
+    margin-left:12.5%;  /* = width of .hex / 2  to indent even rows */
+  }
+}
+
+@media (max-width: 900px) and (min-width:601px) { /* <- 3-2  hexagons per row */
+  #hexGrid{
+    padding-bottom: 17.4%;
+    font-size: 14px;
+  }
+  .hex {
+    width: 33.333%; /* = 100 / 3 */
+  }
+  .hex:nth-child(5n+4){ /* first hexagon of even rows */
+    margin-left:16.666%;  /* = width of .hex / 2  to indent even rows */
+  }
+}
+
+@media (max-width: 600px) { /* <- 2-1  hexagons per row */
+  #hexGrid{
+    padding-bottom: 15.2%;
+    font-size: 12px;
+  }
+  .hex {
+    width: 50%; /* = 100 / 3 */
+  }
+  .hex:nth-child(3n+3){ /* first hexagon of even rows */
+    margin-left:25%;  /* = width of .hex / 2  to indent even rows */
+  }
+}
+
+@media (max-width: 400px) {
+    #hexGrid {
+        font-size: 8px;
+    }
+ 
+}

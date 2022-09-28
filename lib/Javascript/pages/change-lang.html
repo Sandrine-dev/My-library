@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+
+
+ <link rel="stylesheet" href="https://unicons.iconscout.com/release/v4.0.0/css/line.css">
+
+ <style>
+    body.change-language .eng{
+        display: initial;
+    }
+
+    body.change-language .fr{
+        display: none;
+    }
+
+    .eng{
+        display: none;
+    }
+
+    .lang__icon{
+        width: 1.2rem ;
+    }
+ </style>
+
+<body>
+
+<div class="nav__btns" id="language-button">
+    <!--language change button-->
+    <img src="../asset/united-kingdom.png" class="fr lang__icon">
+    <img src="../asset/france.png" class="eng lang__icon" >
+</div>
+
+<div class="eng">
+ English
+</div>
+
+<div class="fr">
+ French
+</div>
+
+<script>
+
+
+const languageButton = document.getElementById('language-button')
+const changelanguage = 'change-language'
+
+
+// Previously selected topic (if user selected)
+const selectedlanguage = localStorage.getItem('selected-language')
+const selectedIcon = localStorage.getItem('selected-icon')
+
+// We obtain the current language that the interface has by validating the change-language class
+const getCurrentlanguage = () => document.body.classList.contains(changelanguage) ? 'english' : 'french'
+
+
+// We validate if the user previously chose a topic
+if (selectedlanguage) {
+  // If the validation is fulfilled, we ask what the issue was to know if we activated or deactivated the change
+  document.body.classList[selectedlanguage === 'english' ? 'add' : 'remove'](changelanguage)
+
+}
+
+// Activate / deactivate the language manually with the button
+languageButton.addEventListener('click', () => {
+    // Add or remove the change / icon language
+    document.body.classList.toggle(changelanguage)
+
+    // We save the language and the current icon that the user chose
+    localStorage.setItem('selected-language', getCurrentlanguage())
+
+})
+
+
+</script>
+</body>
+
+</html>

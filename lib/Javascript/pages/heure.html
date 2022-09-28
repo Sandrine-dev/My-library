@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<html lang="fr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <link rel="stylesheet" type="text/css" href="../css/heure.css" />
+    <link rel="stylesheet" type="text/css" href="../css/style.css" />
+
+    <link href="../css/prism.css" rel="stylesheet" />
+
+    <title>Lib javascript</title>
+  </head>
+  <body>
+    <header id="Head">
+      <div id="Navigation">
+        <div class="topnav" id="MyTopnav">
+          <a href="../Index.html">Menu</a>
+          <a href="javascript:void(0);" class="icon" onclick="myFunction()">
+            <i class="fa fa-bars"></i>
+          </a>
+        </div>
+      </div>
+    </header>
+
+  <div id="body">
+
+    <div id="title">
+      <p>
+        Apparenons à jouer avec le temps! Vous allez voir c'est amusant! <br/> Nous somme le <span id="Today"></span> et il est <span id="instantTime"></span> !
+      </p>
+    </div>
+
+    <div class="underNav">
+      <button onclick="toggleDiv('div1')">Date</button>
+      <button onclick="toggleDiv('div2')">Heure</button>
+      <!--<button onclick="toggleDiv('div3')">Horologe</button>-->
+    </div>
+
+
+    <section class="toggle" id="div1">
+      <div class="explain">
+        <p>
+          Nous allons d'abord apprendre à récupérer <span>la date</span> avec Javascript!
+        </p>
+      </div> 
+
+      <pre><code class="language-javascript">var dtJour = new Date();
+
+console.log(dtJour);</code></pre>
+
+      <div class="explain">
+        <p> Nous créons donc une variable, ici appellé <code class="language-javascript">dtJour</code> et en y récupérant l'objet <code class="language-javascript">Date</code>. Ce qui nous donne alors 
+        <span id="dtJour"></span> <br/>
+        <br/>
+        Ce n'est pas forcément lisible ainsi... <br/>
+        Pas de soucis nous allons éclaircire un peu tout ça!
+        </p>
+      </div>
+
+      <div class="explain">
+        <p>Nous allons donc décortiquer l'objet <code class="language-javascript">Date</code>  et récupérer que ce qui nous intéresse. Ici ce sera le jour, le mois et l'année et le faire afficher de manière compacte : <span>00/00/0000</span></p>
+      </div>
+
+      <pre ><code class="language-javascript">var dtJour = new Date();
+
+console.log(dtJour.getDate() + " " + dtJour.getMonth() + " " + dtJour.getFullYear());</code></pre>
+    
+      <div class="explain">
+        <p>Ici nous récupéront la Jour avec Date, le mois avec Month et l'année avec FullYear. <br/>
+        Cela va donc nous afficher les donné suivante : <span id="dtClear"></span>. 
+        </p>
+
+        <p>
+        On constate ici qu'un chiffre n'est pas le bon, le mois afficher est incorecte car l'objet <code class="language-javascript">Date</code> commence les mois à 0, nous devons donc rajouter 1 à chaque fois. De plus on voudrait rajouter un 0 devant le jour ou le mois si le chiffre est inférieure à dix!
+        </p>
+      </div>
+
+      <pre><code code class="language-javascript">var dtJour = new Date();
+
+function getDateCompact(dt) {
+
+    var Y = dt.getFullYear();
+    var M = dt.getMonth() + 1; //on rajoute un pour être sûr d'avoir le bon mois car 0 correspond à Janvier.
+
+    if (M < 10) {
+      M = "0" + M;
+    } //Pour pouvoir afficher le 0 les neufs premiers mois
+
+    var D = dt.getDate();
+
+    if (D < 10) {
+      D = "0" + D;
+    } //Pour pouvoir afficher le 0 les neufs premiers jours
+
+    return D + "/" + M + "/" + Y;
+}
+
+console.log(getDateCompact(dtJour));</code></pre>
+
+        <div class="explain"> 
+          <p>
+            Et nous voilà avec la date complète et compacte : <span id="dtCompact"></span>
+          </p>
+          <p>Bien sûr il vous ait possible de l'afficher en version anglaise il suffit de mettre <code class="language-javascript">return M + "/" + D + "/" + Y;</code></p>
+        </div>
+
+        <div class="explain">
+          <p>Vous voulez afficher la date complète avec les jours et les mois écris? Ce n'est pas plus compliqué!</p>
+
+          <p>Nous allons devoir allez chercher le jour de la semaine et nous la date, nous allons donc utilisé <code code class="language-javascript">getDay()</code> qui nous retournera un chiffre entre 0 et 6. Le 0 étant le dimanche.</p>
+        </div>
+      
+        <pre><code code class="language-javascript">var dtJour = new Date();
+
+console.log(dtJour.getDay());</code></pre>
+
+        <div class="explain"> 
+          <p>Nous somme donc le <span id="dtDay"></span> jour de la semaine.</p>
+        
+          <p>Afin de mettre un nom sur le jour et aussi sur le mois nous allons créer deux tableaux, un pour les jours et un autre pour le mois</p>
+      </div>
+      
+      <pre><code code class="language-javascript">var dtJour = new Date();
+
+var jours = Array(
+  "Dimanche",
+  "Lundi",
+  "Mardi",
+  "Mercredi",
+  "Jeudi",
+  "Vendredi",
+  "Samedi"
+);
+var mois = Array(
+  "Janvier",
+  "Février",
+  "Mars",
+  "Avril",
+  "Mai",
+  "Juin",
+  "Juillet",
+  "Août",
+  "Septembre",
+  "Octobre",
+  "Novembre",
+  "Décembre"
+);
+
+console.log(jours[dtJour.getDay()] + " " + dtJour.getDate() + " " + mois[dtJour.getMonth()] + " " + dtJour.getFullYear());</code></pre>
+
+      <div class="explain">
+        <p>
+          Nous somme le <span id="dtFullDate"></span>.</p>
+        <p>
+          Ici nous devons allez rechercher le nom qui correspond au chiffre du jour, donc nous devons écrire l'appel suivant <code code class="language-javascript">jours[dtJour.getDay()]</code> et nous utiliserons le même appel pour le mois.
+        </p>
+      </div>
+
+    
+    
+    </section>
+
+    <section class="toggle" id="div2">
+      <div class="explain">
+        <p>
+          Maintenant il nous faut <span>l'heure</span>!
+        </p>
+      </div> 
+
+      <pre><code class="language-javascript">var dtJour = new Date();
+
+console.log(dtJour.getHours() + " h " + dtJour.getMinutes() + " m " + dtJour.getSeconds() + " s " + dtJour.getMilliseconds() + " ms");</code></pre>
+
+      <div class="explain">
+        <p>C'est donc comme pour la Date afin de récupérer les heures, minutes... etc <br/>
+        Il était donc <span id="dtHour"></span> Au moment ou vous êtes arrivé sur la page!</p>
+
+        <p>Vous pouvez aussi avoir l'heure en temps réel : <span id="instantTime"></span></p>
+      </div>
+      
+      <pre><code class="language-javascript">var dtJour = new Date();
+
+function printHorloge() {
+  if (document.getElementById) {
+    updadteHorloge();
+  }
+}
+
+function updadteHorloge(){
+  var dt = new Date();
+  var h = dt.getHours();
+
+  if (h < 10) {
+    h = "0" + h;
+  }
+  var m = dt.getMinutes();
+
+  if (m < 10) {
+    m = "0" + m;
+  }
+  var s = dt.getSeconds();
+
+  if (s < 10) {
+    m = "0" + s;
+  }
+  document.getElementById("instantTime").innerHTML = h + "h" + m + "m" + s + "s";
+
+  setTimeout("updadteHorloge()", 1000)
+};
+
+printHorloge();
+      </code></pre>
+
+      <div class="explain">
+        Pour éviter que votre console affiche une heure toute les secondes je vous propose cette fois-ci de passer par une <code class="language-html">	&#60;div&#62;</code> avec comme id "instantTime"
+      </div>
+      
+      <div class="explain">
+        <p> Vous avez donc appris à notez la date et l'heure sur votre site internet! J'espère que ça vous aura plus et à la porchaine!</p>
+      </div>
+      
+
+    </section>
+
+
+    <!--<section class="toggle" id="div3">
+      <div>
+        <div id="WatchAnimation">
+          <svg width="200" height="200" viewBox="-100 -100 200 200">
+            <circle class="minute_marker" r="90" pathLength="60" />
+            <circle class="hour_marker" cx="0" cy="0" r="90" pathLength="60" />
+
+            <g id="hour_hand">
+              <line class="hand" x1="0" y1="0" x2="0" y2="-50" />
+              <line class="hand hand--thick" x1="0" y1="-12" x2="0" y2="-50" />
+            </g>
+
+            <g id="minute_hand">
+              <line class="hand" x1="0" y1="0" x2="0" y2="-80" />
+              <line class="hand hand--thick" x1="0" y1="-12" x2="0" y2="-80" />
+            </g>
+
+            <g id="second_hand">
+              <line class="hand hand--second" x1="0" y1="12" x2="0" y2="-80" />
+            </g>
+          </svg>
+        </div>
+      </div>
+
+      <div class="explain">
+        <p>
+          Comment faire une animation d'horologe?
+        </p>
+      </div> 
+
+      <pre><code class="language-javascript">var dtJour = new Date();
+
+console.log(dtJour.getHours() + " h " + dtJour.getMinutes() + " m " + dtJour.getSeconds() + " s " + dtJour.getMilliseconds() + " ms");</code></pre>
+    </section>-->
+
+  </div>
+
+    <script type="text/javascript" src="../js/heure.js"></script>
+    <script type="text/javascript" src="../js/main.js"></script>
+    <script src="../js/prism.js"></script>
+    	<script src="https://code.jquery.com/jquery-3.4.1.js"></script>
+  </body>
+</html>

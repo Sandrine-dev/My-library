@@ -1,0 +1,399 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>SideBar Menu</title>
+
+    <link rel="stylesheet" href="https://unicons.iconscout.com/release/v4.0.0/css/line.css">
+
+    <!-- Styles -->
+    <style>
+    :root {
+        --white-color : #ffffff;
+        --bleucl-color :hsl(175, 27%, 65%);
+        --black-color : #000000;
+    }
+
+    *{
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+    }
+
+    body, html{
+        height: 100%;
+        margin: 0;
+        font-family: 'Times New Roman', Times, serif;
+    }
+
+    /***DESKOPT***/
+
+    /*header*/
+    .header{
+        background-color: var(--black-color);
+    }
+
+    /*sidebar*/
+
+    i{
+        font-size: 25px;
+    }
+    .btn i{
+        color: var(--black-color);
+        font-size: 25px;
+        
+    }
+    .nav_list i{
+        color:var(--white-color);
+    }
+    
+    .sidebar{
+        background-color: var(--black-color);
+        color: var(--white-color);
+        position: fixed;
+        height: 100%;
+        width: 78px;
+        padding: 6px 14px;
+        z-index:99;
+        transition: all 0.5s ease;
+    }
+
+    .sidebar.active{
+        width:240px;
+    }
+
+
+
+    .sidebar #btn{
+        position:absolute;
+        top: 6px;
+        left: 145%;
+        font-size: 22px;
+        height: 50px;
+        width: 50px;
+        text-align: center;
+        transform: translateX(-50%);
+        cursor: pointer;
+    }
+
+    .sidebar.active #btn{
+        left: 115%;
+    }
+
+    .sidebar.active #btn :first-child{
+    display: none;
+    }
+    .sidebar #btn .links_name{
+        width: 65px;
+        transition:inherit;
+    }
+
+    .sidebar ul{
+    margin-top:20px;
+    }
+    .sidebar ul li{
+    position:relative;
+    height:50px;
+    width:100%;
+    margin:5px 0;
+    list-style: none;
+    line-height: 50px;
+    }
+
+    .sidebar ul li .ico, .sidebar .list_resaux .ico{
+        font-size: 18px;
+        font-weight: 400;
+        height:50px;
+        min-width: 50px;
+        border-radius: 12px;
+        line-height: 50px;
+        text-align: center;
+    }
+
+    .sidebar ul li a{
+    color:var(--white-color);
+    display:flex;
+    align-items:center;
+    text-decoration: none;
+    white-space: nowrap;
+    transition:all 0.4s ease;
+    }
+
+    nav ul li i:hover, .list_resaux i:hover {
+    border-left: 5px solid var(--bleucl-color);
+    }
+    .sidebar ul li a:hover span{
+    color: var(--bleucl-color);
+    }
+
+    .bottom .resaux{
+    display: flex;
+    flex-direction: column;
+    }
+    .bottom .resaux .list_resaux{
+    display: flex;
+    flex-direction: column;
+    }
+    .bottom .resaux .list_resaux .ico{
+    margin-bottom: 20px;
+    width: 45px;
+    color: var(--white-color);
+    }
+
+    .bottom .resaux .links_name {
+    margin: 25px 0px 25px -15px;
+    color: var(--white-color);
+    }
+    .sidebar .active .bottom .resaux .list_resaux {
+    flex-direction: row;
+    }
+    .links_name{
+    font-size: 15px;
+    padding-left: 25px;
+    opacity:0;
+    transition:all 0.3s ease;
+    }
+    .sidebar.active .links_name{
+    transition:0s;
+    opacity:1;
+    align-self: center;
+    }
+    .sidebar.active .bottom .resaux .list_resaux{
+    flex-direction: row;
+    justify-content: space-around;
+    }
+    .sidebar.active .logo-1{
+    display: none;
+    }
+
+    .logo-2{
+    height: 100px;
+    width: auto;
+    padding: 25px 0px 30px 0px;
+    }
+
+    /*btn switch*/
+    .content{
+    border-top: 2px solid var(--bleucl-color);
+    border-bottom: 2px solid var(--bleucl-color);
+    }
+    .content .links_name{
+    color: var(--white-color);
+    padding-left: 55px;
+    margin-top: -90px;
+    position: absolute;
+    }
+    label {
+    cursor: pointer;
+    }
+    [type="checkbox"] {
+    display: none;
+    }
+    .switches {
+    margin: 25px auto;
+    border-radius: 5px;
+    }
+    .switches label {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 15px;
+    }
+    .switches span {
+    position: relative;
+    width: 20px;
+    height: 85px;
+    border-radius: 15px;
+    box-shadow: inset 0 0 5px rgba(203, 14, 15, 0.4);
+    background: var(--bleucl-color);;
+    transition: all 0.3s;
+    }
+    .switches span::before,
+    .switches span::after {
+    content: "";
+    position: absolute;
+    }
+    .switches span::before {
+    top: 1px;
+    width: 20px;
+    height: 20px;
+    background: var(--bleucl-color);;
+    border-radius: 50%;
+    z-index: 1;
+    transition: transform 0.3s;
+    }
+    .switches span::after {
+    top: 87%;
+    right: 3px;
+    width: 14px;
+    height: 14px;
+    transform: translateY(-50%);
+    background: url(../../images/check_white.png) no-repeat;
+    background-size: 14px 14px;
+    }
+    .switches [type="checkbox"]:checked + label span {
+    background: var(--bleucl-color);;
+    }
+    .switches [type="checkbox"]:checked + label span::before {
+    transform: translateY(60px);
+    }
+    .switches [type="checkbox"]:checked + label span::after {
+    width: 14px;
+    height: 14px;
+    left: 4px;
+    top: 15%;
+    background-image: url(../../images/check_black.png);
+    background-size: 14px 14px;
+    }
+
+    .home_content{
+        position:absolute;
+        height:100%;
+        width:calc(100% - 78px);
+        left:78px;
+        background:#e8eceb;
+        padding:20px;
+        box-shadow: 0 5px 10px rgba(0,0,0,0.2);
+        transition:all 0.5s ease;
+     }
+
+    .home_content .text{
+        font-size: 25px;
+        font-weight: 600;
+        color:#1d1b31;
+        margin-bottom:15px;
+        margin-top: 25px;
+    }
+    .home_content p{
+        margin-bottom:15px;
+    }
+    </style>
+
+</head>
+
+<body>
+
+    <div class="header">
+        <nav class="sidebar">
+            <div id="btn" class="btn">
+                <i class="uil uil-bars"></i>
+                <i class="uil uil-times links_name"></i>
+            </div>
+
+            <div class="logo">
+                <p class="logo-2 links_name">SideBar Menu</p>
+            </div>
+
+            <ul class="nav_list">
+                <li>
+                    <a href="../../Index.html">
+                        <div class="ico">
+                            <i class="uil uil-estate"></i>
+                        </div>
+                        <span class="links_name">Accueil</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="../navigation.html">
+                        <div class="ico">
+                            <i class="uil uil-backspace"></i>
+                        </div>
+                        <span class="links_name">Retour</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="#">
+                        <div class="ico">
+                            <i class="uil uil-question-circle"></i>
+                        </div>
+                        <span class="links_name">FAQ</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="#">
+                        <div class="ico">
+                            <i class="uil uil-comment-info"></i>
+                        </div>
+                        <span class="links_name">A propos</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="#">
+                        <div class="ico">
+                            <i class="uil uil-envelope"></i>
+                        </div>
+                        <span class="links_name">Contactez-nous</span>
+                    </a>
+                </li>
+            </ul>
+
+
+            <div class="content">
+
+                <div class="switches">
+                    <div>
+                        <input type="checkbox" id="1">
+                        <label for="1">
+                            <span></span>
+                        </label>
+                    </div>
+                </div>
+
+                <span class="links_name">Accessibilité</span>
+            </div>
+
+
+            <div class="bottom">
+                <div class="resaux">
+                    <span class="links_name links_resaux">Suivez-nous</span>
+                    <div class="list_resaux">
+                        <a href="#">
+                            <div class="ico">
+                               <i class="uil uil-facebook-f"></i>
+                            </div>
+                        </a>
+                        <a href="#">
+                            <div class="ico">
+                                <i class="uil uil-linkedin-alt"></i>
+                            </div>
+                        </a>
+                        <a href="#">
+                            <div class="ico">
+                                <i class="uil uil-instagram"></i>
+                            </div>
+                        </a>
+                    </div>
+
+                </div>
+            </div>
+        </nav>
+
+    </div>
+
+    <div class="home_content">
+     <div class="text">Dashboard</div>
+     <p>Nullam vulputate ultrices tellus et bibendum. Integer iaculis pharetra ligula, eget condimentum nunc malesuada nec. Nullam eu lorem sed tellus condimentum aliquam in in eros. Maecenas sagittis, justo quis blandit aliquet, sem felis interdum elit, ac dictum purus mauris nec mauris. In hac habitasse platea dictumst. Morbi placerat nec lorem in feugiat. In tristique laoreet diam, vel vulputate mi placerat id. Vivamus at quam rutrum, finibus tortor laoreet, venenatis sem. Nam vitae libero ultrices, tristique ligula non, sagittis elit. Vestibulum sed turpis nec eros convallis viverra. Maecenas nunc arcu, pharetra bibendum feugiat ut, consequat quis massa. Vivamus aliquet eros a efficitur fringilla. Aenean auctor ut mi ut vestibulum. Suspendisse a turpis id nisi faucibus efficitur. Sed ipsum urna, ultricies eget justo vitae, hendrerit malesuada mauris. Donec a turpis malesuada, euismod massa id, ultrices ex.
+    </p>
+    <p>Nullam vulputate ultrices tellus et bibendum. Integer iaculis pharetra ligula, eget condimentum nunc malesuada nec. Nullam eu lorem sed tellus condimentum aliquam in in eros. Maecenas sagittis, justo quis blandit aliquet, sem felis interdum elit, ac dictum purus mauris nec mauris. In hac habitasse platea dictumst. Morbi placerat nec lorem in feugiat. In tristique laoreet diam, vel vulputate mi placerat id. Vivamus at quam rutrum, finibus tortor laoreet, venenatis sem. Nam vitae libero ultrices, tristique ligula non, sagittis elit. Vestibulum sed turpis nec eros convallis viverra. Maecenas nunc arcu, pharetra bibendum feugiat ut, consequat quis massa. Vivamus aliquet eros a efficitur fringilla. Aenean auctor ut mi ut vestibulum. Suspendisse a turpis id nisi faucibus efficitur. Sed ipsum urna, ultricies eget justo vitae, hendrerit malesuada mauris. Donec a turpis malesuada, euismod massa id, ultrices ex.
+    </p>
+    <p>Nullam vulputate ultrices tellus et bibendum. Integer iaculis pharetra ligula, eget condimentum nunc malesuada nec. Nullam eu lorem sed tellus condimentum aliquam in in eros. Maecenas sagittis, justo quis blandit aliquet, sem felis interdum elit, ac dictum purus mauris nec mauris. In hac habitasse platea dictumst. Morbi placerat nec lorem in feugiat. In tristique laoreet diam, vel vulputate mi placerat id. Vivamus at quam rutrum, finibus tortor laoreet, venenatis sem. Nam vitae libero ultrices, tristique ligula non, sagittis elit. Vestibulum sed turpis nec eros convallis viverra. Maecenas nunc arcu, pharetra bibendum feugiat ut, consequat quis massa. Vivamus aliquet eros a efficitur fringilla. Aenean auctor ut mi ut vestibulum. Suspendisse a turpis id nisi faucibus efficitur. Sed ipsum urna, ultricies eget justo vitae, hendrerit malesuada mauris. Donec a turpis malesuada, euismod massa id, ultrices ex.
+    </p>
+    <p>Nullam vulputate ultrices tellus et bibendum. Integer iaculis pharetra ligula, eget condimentum nunc malesuada nec. Nullam eu lorem sed tellus condimentum aliquam in in eros. Maecenas sagittis, justo quis blandit aliquet, sem felis interdum elit, ac dictum purus mauris nec mauris. In hac habitasse platea dictumst. Morbi placerat nec lorem in feugiat. In tristique laoreet diam, vel vulputate mi placerat id. Vivamus at quam rutrum, finibus tortor laoreet, venenatis sem. Nam vitae libero ultrices, tristique ligula non, sagittis elit. Vestibulum sed turpis nec eros convallis viverra. Maecenas nunc arcu, pharetra bibendum feugiat ut, consequat quis massa. Vivamus aliquet eros a efficitur fringilla. Aenean auctor ut mi ut vestibulum. Suspendisse a turpis id nisi faucibus efficitur. Sed ipsum urna, ultricies eget justo vitae, hendrerit malesuada mauris. Donec a turpis malesuada, euismod massa id, ultrices ex.
+    </p>
+   </div>
+
+
+    <script>    
+        let btn = document.querySelector("#btn");
+        let sidebar = document.querySelector(".sidebar");
+
+        btn.onclick = function(){
+            sidebar.classList.toggle("active");
+        }
+    </script>
+</body>
+
+</html>

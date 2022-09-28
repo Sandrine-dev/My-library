@@ -1,0 +1,37 @@
+
+
+.minute_marker {
+  fill: transparent;
+  stroke: gray;
+  stroke-width: 7;
+  stroke-dasharray: 0.2 0.8;
+  stroke-dashoffset: 0.1;
+}
+
+.hour_marker {
+  fill: transparent;
+  stroke: red;
+  stroke-width: 7;
+  stroke-dasharray: 0.2 4.8;
+  stroke-dashoffset: 0.1;
+}
+
+.hand {
+  stroke: black;
+  stroke-width: 2;
+  stroke-linecap: round;
+}
+
+.hand--thick {
+  stroke-width: 7;
+}
+
+.hand--second {
+  stroke: red;
+}
+
+.animation {
+  background-color: black;
+  width: 200px;
+  border-radius: 50%;
+}

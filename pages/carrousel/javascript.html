@@ -1,0 +1,605 @@
+<!DOCTYPE html>
+<html>
+    <head lang="fr">
+        <meta charset="utf-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title>Carousel</title>
+        <meta name="viewport" content="width=device-width,initial-scale=1">
+
+        <style>
+                        *{
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+      body, html{
+          height: 100%;
+          margin: 0;
+          font-family: 'maven_pro','Times New Roman', Times, serif;
+      }
+      .main{
+        display: block;
+        justify-content: center;
+        margin-top: 75px auto;
+      }
+      section {
+        margin: 25px auto;
+        width: 78%;
+      }
+      .btn_red{
+      background-color: hsl(175, 27%, 65%);
+      color: white;
+    }
+
+    .btn_red:hover{
+      background-color: hsl(175, 27%, 29%);
+      color: white;
+    }
+    button{
+      border-radius: 25px;
+      border: none;
+      padding: 5px 20px;
+      font-weight: bold;
+      font-size: 15px;
+      cursor: pointer;
+    }
+
+    .carousel_box{
+      margin: 25px auto;
+      width: 80%;
+    }
+    #carousel1 .item{
+      align-items: center;
+      text-align: center;
+      box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.1), 0 6px 20px 0 rgba(0, 0, 0, 0.1);
+      border-radius: 25px ;
+      padding: 15px 20px;
+      width: 90%;
+      margin: 15px 45px 15px 25px;
+    }
+    #carousel1 .item_img{
+      margin: 15px auto;
+    }
+    #carousel1 .item_img img{
+      width: 35%;
+    }
+    #carousel1 .item_title, #carousel1 .item_img{
+      margin-bottom: 30px ;
+    }
+    #carousel1 .item_body{
+      width: 95%;
+    }
+    #carousel1 .item_body, #carousel1 .button{
+      width: 80%;
+      margin: 25px auto;
+    }
+    #carousel1 .button :first-child{
+      margin-right: 5px;
+      margin-bottom: 5px;
+    }
+
+    #carousel2 .item{
+    align-items: center;
+    text-align: center;
+    width: 90%;
+    margin: 15px 45px 15px 25px;
+    }
+
+    #carousel2 .item_img{
+    margin: 15px auto;
+    }
+    #carousel2 .item_img img{
+    width: 35%;
+    }
+
+
+
+    .carousel{
+                position: relative;
+                overflow: hidden;
+    }
+
+        .carousel__container{
+            transition: transform 0.3s, opacity 0.3s;
+            transform: translate3d(0, 0, 0);
+            margin: 25px auto;
+            width: 60%;
+        }
+
+        .carousel__container::after{
+            content: '';
+            clear: both;
+            display: table;
+        }
+
+        .carousel__item{
+            float: left;
+        }
+
+        .carousel__next, .carousel__prev{
+            width: 50px;
+            position: absolute;
+            height: 50px;
+            background-size: 30px 30px;
+            background-image: url('../../images/arrow_red.png');
+            background-repeat: no-repeat;
+            border-radius: 50%;
+            top: 50%;
+            margin-top: -20px;
+            right: 0px;
+            cursor: pointer;
+        }
+
+            .carousel__next{
+              transform: rotate(90deg);
+            }
+
+            .carousel__prev{
+                margin-top:-45px ;
+                left: 0px;
+                transform: rotate(-90deg);
+            }
+
+            .carousel__prev--hidden, .carousel__next--hidden{
+                opacity: 0;
+            }
+
+
+    #carousel3 .item{
+      align-items: center;
+      text-align: center;
+      border-radius: 0px 0px 55px 0px;
+      box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.1), 0 6px 20px 0 rgba(0, 0, 0, 0.1);
+      padding: 15px 20px;
+      width: 70%;
+      margin: 15px 45px 15px 95px;
+    }
+    #carousel3 .item_img{
+      margin: 15px ;
+    }
+    #carousel3 .item_img img{
+      width: 45%;
+    }
+     #carousel3 .item_link img{
+      width: 25px;
+      margin-right: 5px;
+    }
+    #carousel3 .item_link{
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      justify-content: center;
+    }
+    #carousel3 .item_name, #carousel3 .item_img{
+      margin-bottom: 30px ;
+    }
+    #carousel3 .item_body{
+      width: 95%;
+    }
+    #carousel3 .item_body, #carousel3 .button{
+      width: 80%;
+      margin: 25px auto;
+    }
+    #carousel3 .button :first-child{
+      margin-right: 5px;
+      margin-bottom: 5px;
+    }
+
+
+
+        </style>
+
+
+       <link rel="stylesheet" href="../../css/main.css">
+       <link rel="stylesheet" href="https://unicons.iconscout.com/release/v4.0.0/css/line.css">
+        
+    </head>
+    <body>
+
+        <header class="header">
+            <div class="container">
+                <h1>Les différents Carrousel</h1>
+
+                <div>
+                    <a href="../carrousel.html">
+                        <i class="uil uil-backspace header_icon"></i>
+                    </a>
+                </div>
+            </div>
+        </header>
+        <div class="main">
+            <section class="who">
+                <div id="carousel1">
+                    <div class="item">
+                        <div class="item_title">
+                            <h3 class="txt_blue">David</h3>
+                        </div>
+                        <div class="item_img">
+                            <img src="../../images/profile/David.png">
+                        </div>     
+                        <div class="item_body">
+                            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Beatae ut dolorem at illo repudiandae porro veniam neque. Officia placeat, labore saepe quis eos sequi debitis repellat perferendis temporibus aliquam est!</p>
+                        </div>
+                        <div class="button">
+                            <button class="btn_red">En savoir +</button>
+                        </div>
+                    </div>
+                    <div class="item">
+                        <div class="item_title">
+                            <h3 class="txt_blue">Clara</h3>
+                        </div>
+                        <div class="item_img">
+                            <img src="../../images/profile/Clara.png">
+                        </div>     
+                        <div class="item_body">
+                            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Beatae ut dolorem at illo repudiandae porro veniam neque. Officia placeat, labore saepe quis eos sequi debitis repellat perferendis temporibus aliquam est!</p>
+                        </div>
+                        <div class="button">
+                            <button class="btn_red">En savoir +</button>
+                        </div>
+                    </div>
+                    <div class="item">
+                        <div class="item_title">
+                            <h3 class="txt_blue">Jack</h3>
+                        </div>
+                        <div class="item_img">
+                            <img src="../../images/profile/Jack.png">
+                        </div>     
+                        <div class="item_body">
+                            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Beatae ut dolorem at illo repudiandae porro veniam neque. Officia placeat, labore saepe quis eos sequi debitis repellat perferendis temporibus aliquam est!</p>
+                        </div>
+                        <div class="button">
+                            <button class="btn_red">En savoir +</button>
+                        </div>
+                    </div>
+                    <div class="item">
+                        <div class="item_title">
+                            <h3 class="txt_blue">Laura</h3>
+                        </div>
+                        <div class="item_img">
+                            <img src="../../images/profile/Laura.png">
+                        </div>     
+                        <div class="item_body">
+                            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Beatae ut dolorem at illo repudiandae porro veniam neque. Officia placeat, labore saepe quis eos sequi debitis repellat perferendis temporibus aliquam est!</p>
+                        </div>
+                        <div class="button">
+                            <button class="btn_red">En savoir +</button>
+                        </div>
+                    </div>
+                    <div class="item">
+                        <div class="item_title">
+                            <h3 class="txt_blue">Pat</h3>
+                        </div>
+                        <div class="item_img">
+                            <img src="../../images/profile/Pat.png">
+                        </div>     
+                        <div class="item_body">
+                            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Beatae ut dolorem at illo repudiandae porro veniam neque. Officia placeat, labore saepe quis eos sequi debitis repellat perferendis temporibus aliquam est!</p>
+                        </div>
+                        <div class="button">
+                            <button class="btn_red">En savoir +</button>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section class="partenaire">
+                <div id="carousel2">
+                    <div class="item">
+                        <div class="item_img">
+                            <img src="../../images/profile/Laura.png">
+                        </div>     
+                    </div>
+                    <div class="item">
+                        <div class="item_img">
+                            <img src="../../images/profile/Pat.png">
+                        </div>     
+                    </div>
+                    <div class="item">
+                        <div class="item_img">
+                            <img src="../../images/profile/Jack.png">
+                        </div>     
+                    </div>
+                    <div class="item">
+                        <div class="item_img">
+                            <img src="../../images/profile/David.png">
+                        </div>     
+                    </div>
+                    <div class="item">
+                        <div class="item_img">
+                            <img src="../../images/profile/Clara.png">
+                        </div>     
+                    </div>
+                </div>
+            </section>
+
+        </div>
+
+        <script src="js/main.js"></script>
+    </body>
+
+    <script>
+        class Carousel {
+
+    constructor (element, options = {}) {
+        this.element = element
+        this.options = Object.assign({}, {
+            slidesToScroll: 1,
+            slidesVisible: 1,
+            loop : false,
+            infinite : false
+        }, options)
+        let children = [].slice.call(element.children)
+        this.isMobile = false
+        this.currentItem = 0
+        this.root = this.createDivWithClass('carousel')
+        this.container = this.createDivWithClass('carousel__container')
+        this.root.setAttribute('tabindex' , '0')
+        this.root.appendChild(this.container)
+        this.element.appendChild(this.root)
+        
+        this.items = children.map((child) => {
+            let item = this.createDivWithClass('carousel__item')
+            item.appendChild(child)
+            return item
+        })
+        if (this.options.infinite) {
+            this.offset = this.options.slidesVisible * 2 - 1
+            this.items = [
+                ...this.items.slice(this.items.length - this.offset).map(item => item.cloneNode(true)),
+                ...this.items,
+                ...this.items.slice(0, this.offset).map(item => item.cloneNode(true)),
+            ]
+            this.gotoItem(this.offset, false)
+
+        }
+        this.items.forEach(item => this.container.appendChild(item))
+        this.setStyle()
+        this.createNavigation()
+        this.onWindowResize()
+        window.addEventListener('resize', this.onWindowResize.bind(this))
+        this.root.addEventListener('keyup', e => {
+            if (e.key === 'ArrowRight' || e.key === 'Right') {
+                this.next()
+            } else if (e.key === 'ArrowLeft' || e.key === 'Left'){
+                this.prev()
+            }
+        })
+        if (this.options.infinite){
+            this.container.addEventListener('transitionend', this.resetInfinite.bind(this))
+        }
+        
+    }
+
+    setStyle() {
+        let ratio = this.items.length / this.slidesVisible
+        this.container.style.width = (ratio * 100) +'%'
+        this.items.forEach(item => item.style.width = ((100 / this.slidesVisible) / ratio) + "%")
+    }
+
+    createNavigation () {
+        let nextButton = this.createDivWithClass('carousel__next')
+        let prevButton = this.createDivWithClass('carousel__prev')
+        this.root.appendChild(nextButton)
+        this.root.appendChild(prevButton)
+        nextButton.addEventListener('click', this.next.bind(this) )
+        prevButton.addEventListener('click', this.prev.bind(this) )
+    }
+
+    next () {
+        this.gotoItem(this.currentItem + this.slidesToScroll)
+    }
+    prev () {
+        this.gotoItem(this.currentItem - this.slidesToScroll)
+    }
+
+    gotoItem( index, animation = true) {
+        if (index < 0) {
+            if (this.options.loop){
+                index = this.items.length - this.slidesVisible
+            }
+            else { return 
+            }
+
+        } else if (index >= this.items.length || (this.items[this.currentItem + this.slidesVisible] === undefined && index > this.currentItem)) {
+            if (this.options.loop){
+            index = 0
+            }
+            else { return 
+            }
+        }
+        let translateX = index * -100/this.items.length
+        if (animation === false){
+            this.container.style.transition = 'none'
+        }
+        this.container.style.transform = 'translate3d(' + translateX + '%, 0, 0)'
+        this.container.offsetHeight
+        if (animation === false){
+            this.container.style.transition = ''
+        }
+        this.currentItem = index
+    }
+
+    resetInfinite () {
+        if (this.currentItem <= this.options.slidesToScroll){
+            this.gotoItem(this.currentItem (+ this.items.length - 2 * this.offset), false)
+        } else if (this.currentItem >= this.items.length - this.offset){
+            this.gotoItem(this.currentItem -( this.items.length - 2 * this.offset), false)
+        }
+    }
+
+    onWindowResize () {
+        let mobile = window.innerWidth < 800
+        if (mobile !== this.isMobile) {
+            this.isMobile = mobile
+            this.setStyle()
+        }
+    }
+
+    createDivWithClass (className) {
+        let div = document.createElement('div')
+        div.setAttribute('class', className )
+        return div
+    }
+
+    get slidesToScroll () {
+        return this.isMobile ? 1 : this.options.slidesToScroll
+    }
+
+    get slidesVisible () {
+        return this.isMobile ? 1 : this.options.slidesVisible
+    }
+}
+
+
+document.addEventListener('DOMContentLoaded', function () {
+
+    new Carousel(document.querySelector('#carousel1'), {
+        slidesToScroll: 2,
+        slidesVisible: 2,
+        infinite : true
+    })
+
+    new Carousel(document.querySelector('#carousel2'), {
+        slidesToScroll: 2,
+        slidesVisible: 3,
+        infinite : true
+    })
+
+})
+
+class Carousel_team {
+
+    constructor (element, options = {}) {
+        this.element = element
+        this.options = Object.assign({}, {
+            slidesToScroll: 1,
+            slidesVisible: 1,
+            loop : false,
+            infinite : false
+        }, options)
+        let children = [].slice.call(element.children)
+        this.isMobile = false
+        this.currentItem = 0
+        this.root = this.createDivWithClass('carousel')
+        this.container = this.createDivWithClass('carousel__container')
+        this.root.setAttribute('tabindex' , '0')
+        this.root.appendChild(this.container)
+        this.element.appendChild(this.root)
+        
+        this.items = children.map((child) => {
+            let item = this.createDivWithClass('carousel__item')
+            item.appendChild(child)
+            return item
+        })
+        if (this.options.infinite) {
+            this.offset = this.options.slidesVisible * 2 - 1
+            this.items = [
+                ...this.items.slice(this.items.length - this.offset).map(item => item.cloneNode(true)),
+                ...this.items,
+                ...this.items.slice(0, this.offset).map(item => item.cloneNode(true)),
+            ]
+            this.gotoItem(this.offset, false)
+
+        }
+        this.items.forEach(item => this.container.appendChild(item))
+        this.setStyle()
+        this.createNavigation()
+        this.onWindowResize()
+        window.addEventListener('resize', this.onWindowResize.bind(this))
+        this.root.addEventListener('keyup', e => {
+            if (e.key === 'ArrowRight' || e.key === 'Right') {
+                this.next()
+            } else if (e.key === 'ArrowLeft' || e.key === 'Left'){
+                this.prev()
+            }
+        })
+        if (this.options.infinite){
+            this.container.addEventListener('transitionend', this.resetInfinite.bind(this))
+        }
+        
+    }
+
+    setStyle() {
+        let ratio = this.items.length / this.slidesVisible
+        this.container.style.width = (ratio * 100) +'%'
+        this.items.forEach(item => item.style.width = ((100 / this.slidesVisible) / ratio) + "%")
+    }
+
+    createNavigation () {
+        let nextButton = this.createDivWithClass('carousel__next')
+        let prevButton = this.createDivWithClass('carousel__prev')
+        this.root.appendChild(nextButton)
+        this.root.appendChild(prevButton)
+        nextButton.addEventListener('click', this.next.bind(this) )
+        prevButton.addEventListener('click', this.prev.bind(this) )
+    }
+
+    next () {
+        this.gotoItem(this.currentItem + this.slidesToScroll)
+    }
+    prev () {
+        this.gotoItem(this.currentItem - this.slidesToScroll)
+    }
+
+    gotoItem( index, animation = true) {
+        if (index < 0) {
+            if (this.options.loop){
+                index = this.items.length - this.slidesVisible
+            }
+            else { return 
+            }
+
+        } else if (index >= this.items.length || (this.items[this.currentItem + this.slidesVisible] === undefined && index > this.currentItem)) {
+            if (this.options.loop){
+            index = 0
+            }
+            else { return 
+            }
+        }
+        let translateX = index * -100/this.items.length
+        if (animation === false){
+            this.container.style.transition = 'none'
+        }
+        this.container.style.transform = 'translate3d(' + translateX + '%, 0, 0)'
+        this.container.offsetHeight
+        if (animation === false){
+            this.container.style.transition = ''
+        }
+        this.currentItem = index
+    }
+
+    resetInfinite () {
+        if (this.currentItem <= this.options.slidesToScroll){
+            this.gotoItem(this.currentItem (+ this.items.length - 2 * this.offset), false)
+        } else if (this.currentItem >= this.items.length - this.offset){
+            this.gotoItem(this.currentItem -( this.items.length - 2 * this.offset), false)
+        }
+    }
+
+    onWindowResize () {
+        let mobile = window.innerWidth < 800
+        if (mobile !== this.isMobile) {
+            this.isMobile = mobile
+            this.setStyle()
+        }
+    }
+
+    createDivWithClass (className) {
+        let div = document.createElement('div')
+        div.setAttribute('class', className )
+        return div
+    }
+
+    get slidesToScroll () {
+        return this.isMobile ? 1 : this.options.slidesToScroll
+    }
+
+    get slidesVisible () {
+        return this.isMobile ? 1 : this.options.slidesVisible
+    }
+}
+
+    </script>
+
+</html>
